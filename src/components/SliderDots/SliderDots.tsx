@@ -1,24 +1,27 @@
-import { CircleSmall} from 'lucide-react';
-import './SliderDots.css'
+import { CircleSmall } from "lucide-react";
 
-type SliderDotsProps = {
-    images: string[]
-    index: number
-    setIndex: React.Dispatch<React.SetStateAction<number>>
-}
+type TSliderDotsProps = {
+  count: number;
+  currentIndex: number;
+  onIndexChange: (index: number) => void;
+};
 
-const SliderDots = ({images,index,setIndex}:SliderDotsProps) =>{
-    return (
-        images.map((img,idx)=>{
-            return(
-                <CircleSmall 
-                    key={idx}
-                    className={idx === index ? 'active' : ''}
-                    onClick={()=>setIndex(idx)}
-                />
-            )
-        })
-    )
-}
+const SliderDots = ({ count, currentIndex, onIndexChange }: TSliderDotsProps) => {
+  const arr = new Array(count).fill(null);
+  
+  return (
+    <>
+      {arr.map((_, idx) => {
+        return (
+          <CircleSmall
+            key={idx}
+            className={idx === currentIndex ? 'active': ''}
+            onClick={() => onIndexChange(idx)}
+          />
+        )
+      })}
+    </>
+  );
+};
 
-export default SliderDots
+export default SliderDots;
