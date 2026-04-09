@@ -8,7 +8,6 @@ type TSliderDotsProps = {
 
 const SliderDots = ({ count, currentIndex, onIndexChange }: TSliderDotsProps) => {
   const arr = new Array(count).fill(null);
-  
   return (
     <>
       {arr.map((_, idx) => {

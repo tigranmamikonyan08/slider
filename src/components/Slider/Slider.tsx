@@ -42,7 +42,7 @@ const Slider = () => {
   };
 
   const onPrevFlip = () => {
-    setIndex(prevIndex => prevIndex < 1 ? images.length : prevIndex - 1);
+    setIndex(prevIndex => prevIndex < 1 ? images.length - 1 : prevIndex - 1);
   };
 
   useEffect(() => {
@@ -57,18 +57,34 @@ const Slider = () => {
     }
   }, [isPlaying]);
 
-  return (
-    <div className="sliderWrapper">
-      <img src={images[index]} alt="" />
-      
-      <div className="circleBtns">
-        <SliderDots count={images.length} currentIndex={index} onIndexChange={onIndexChange} />
+  console.log(images[1]);
+  
 
-        <AutoPlayControls isPlaying={isPlaying} onPlay={onPlay} onPause={onPause}  />
+  return (
+    <>
+      <div className="sliderWrapper">
+        <div className="slider-track"
+          style={{transform: `translateX(-${index * 100}%)`}}
+        >
+          {
+            images.map((img,i)=>{
+              return (
+                <div style={{flexShrink: '0'}} key={i}>
+                  <img src={img}/>
+                </div>
+              )
+            })
+          }
+        </div>  
       </div>
-      
+        
+      <div className="slider-controls">
+        <SliderDots count={images.length} currentIndex={index} onIndexChange={onIndexChange} />
+        <AutoPlayControls isPlaying={isPlaying} onPlay={onPlay} onPause={onPause}  />
+      </div>  
       <SliderArrows onNext={onNextFlip} onPrev={onPrevFlip} />
-    </div>
+    </>
+    
   );
 };
 

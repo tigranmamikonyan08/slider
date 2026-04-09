@@ -13,13 +13,13 @@ img {
     cursor: pointer;
     color: red;
 }
-.circleBtns{
+.slider-controls{
     display: flex;
     justify-content: center;
     margin: 10px 0;
 }
 
-.circleBtns *:hover{
+.slider-controls *:hover{
     color: red;
     cursor: pointer;
 }
@@ -30,8 +30,14 @@ img {
 }
 
 .sliderWrapper{
+    display: flex;
     height: 600px;
     width: 800px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
+.slider-track{
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
